@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>djugのひとりごと</title>
+<link rel="icon" href="https://djug2864.github.io/favicon.png">
+    <link rel="stylesheet" href="style.css"> 
+</head>
+<body>
+
+    <header id="navbar">
+        <div class="site-title">djugのひとりごと</div>
+        <button id="menu-toggle-button" aria-label="メニューを開く">☰</button>
+    </header>
+
+    <div id="full-screen-menu" class="hidden">
+        <button id="menu-close-button">X 閉じる</button>
+        
+        <div class="menu-content">
+            <h2>設定</h2>
+            
+            <div id="user-info">
+                <p>アカウント名: <span id="account-name">--</span></p>
+                <p>メールアドレス: <span id="account-email">--</span></p>
+            </div>
+
+            <button id="auth-button">ログイン</button>
+        </div>
+    </div>
+    
+    <main>
+        <section id="post-section" class="hidden">
+            <h2>今日の独り言をどうぞ</h2>
+            <textarea id="diary-input" placeholder="つぶやきを入力してください..."></textarea>
+            <button id="post-button">つぶやく</button>
+        </section>
+
+        <hr>
+
+        <section id="diary-list-section">
+            <div id="diary-list">
+                <p>読み込み中...</p>
+            </div>
+        </section>
+    </main>
+
+<div id="modal" class="modal hidden">
+    <div class="modal-content">
+        <h3>🚨 外部サイトへの移動について</h3>
+        <p>これから外部サイトへ移動します。よろしいですか？</p>
+        <div class="modal-url">
+            <p>移動先アドレス：<span id="external-url-display"></span></p>
+        </div>
+        
+        <div class="modal-actions">
+            <button id="confirm-button" class="confirm-button">はい、移動します</button>
+            <button id="cancel-button" class="cancel-button">いいえ、閉じます</button>
+        </div>
+    </div>
+</div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

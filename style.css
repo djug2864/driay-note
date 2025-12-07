@@ -1,0 +1,256 @@
+/* ================================================= */
+/* 0. 全体の基本設定 */
+/* ================================================= */
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* 読みやすいフォントを設定 */
+    margin: 0;
+    padding-top: 60px; /* ナビゲーションバーの高さ分、コンテンツを下にずらす */
+    background-color: #f4f4f9; /* やさしい背景色 */
+    color: #333;
+}
+
+main {
+    max-width: 800px; /* メインコンテンツの最大幅 */
+    margin: 20px auto; /* 画面中央に配置 */
+    padding: 0 20px;
+}
+
+h1, h2 {
+    color: #007bff; /* メインカラー（青色） */
+}
+
+/* ------------------------------------------------- */
+/* 1. ナビゲーションバー (常に画面上部に固定) */
+/* ------------------------------------------------- */
+#navbar {
+    background-color: #007bff;
+    color: white;
+    padding: 15px 20px;
+    display: flex; /* 要素を横並びにする */
+    justify-content: space-between; /* タイトルとボタンを左右に配置 */
+    align-items: center;
+    position: fixed; /* 画面上部に固定 */
+    top: 0;
+    left: 0;
+    width: 100%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 100; /* メニューよりも下に隠れないようにする */
+}
+
+.site-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+#menu-toggle-button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+    padding: 5px 10px;
+}
+
+
+/* ------------------------------------------------- */
+/* 2. 全画面メニュー */
+/* ------------------------------------------------- */
+#full-screen-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.95); /* 半透明の黒で背景を隠す */
+    color: white;
+    z-index: 200; /* ナビバーよりも前に出す */
+    display: flex;
+    flex-direction: column; /* 縦並びにする */
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.3s ease; /* 表示切り替えを滑らかにする */
+}
+
+/* hiddenクラスがついているときは見えないようにする */
+.hidden {
+    display: none !important; 
+    opacity: 0;
+}
+
+#menu-close-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: 2px solid white;
+    color: white;
+    font-size: 1.2rem;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.menu-content {
+    text-align: center;
+    padding: 20px;
+}
+
+.menu-content h2 {
+    color: #a0dfff; /* 設定のタイトルを明るい色にする */
+    margin-bottom: 30px;
+}
+
+#user-info p {
+    margin: 10px 0;
+    font-size: 1.1rem;
+}
+
+#auth-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #28a745; /* ログイン/ログアウトボタンの色 */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+/* ------------------------------------------------- */
+/* 3. 投稿フォーム */
+/* ------------------------------------------------- */
+#post-section {
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+#diary-input {
+    width: 100%;
+    min-height: 100px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* paddingを含めたサイズにする */
+    resize: vertical; /* 縦方向だけサイズ変更可能にする */
+}
+
+#post-button {
+    padding: 10px 15px;
+    background-color: #ffc107; /* 目立つ色（黄色） */
+    color: #333;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 100%; /* 幅をいっぱいに広げる */
+}
+
+/* ------------------------------------------------- */
+/* 4. 独り言一覧 (投稿表示) */
+/* ------------------------------------------------- */
+
+.diary-item {
+    background-color: white;
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 10px;
+    border-radius: 6px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.diary-content {
+    white-space: pre-wrap; /* 改行を反映させる */
+    margin-bottom: 10px;
+}
+
+.diary-footer {
+    display: flex;
+    justify-content: space-between; /* 日付と削除ボタンを左右に分ける */
+    align-items: center;
+    font-size: 0.8rem;
+    color: #777;
+}
+
+.delete-button {
+    background-color: #dc3545; /* 赤色 */
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.7rem;
+}
+
+/* ================================================= */
+/* 5. モーダルウィンドウ（クッションページ） */
+/* ================================================= */
+
+/* 画面全体を覆う黒い背景 */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* 半透明の黒 */
+    display: flex;
+    justify-content: center; /* 中央揃え */
+    align-items: center; /* 中央揃え */
+    z-index: 300; /* 全画面メニューよりも上に表示 */
+}
+
+/* hiddenクラスがついているときは見えないようにする（既存のものを再利用） */
+/* .hidden { display: none !important; } */
+
+/* モーダルの中身（白い箱） */
+.modal-content {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    max-width: 90%;
+    width: 400px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+.modal-content h3 {
+    color: #dc3545; /* 赤色で警告 */
+}
+
+.modal-url {
+    background-color: #f8f9fa;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 15px 0;
+    word-break: break-all; /* URLが長すぎても改行する */
+}
+
+#external-url-display {
+    font-weight: bold;
+    color: #007bff;
+}
+
+.modal-actions button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    margin: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.confirm-button {
+    background-color: #007bff;
+    color: white;
+}
+
+.cancel-button {
+    background-color: #6c757d;
+    color: white;
+}
